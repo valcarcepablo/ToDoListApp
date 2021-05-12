@@ -1,0 +1,93 @@
+<link rel=styleSheet href="todos.component.css" type="text/css">
+<div class="jumbotron" style = "padding: 45px 0px">
+    <h1 class ="text-center">App Lista de Tareas</h1>
+</div>
+<div class="input-group text-lg-center">
+  <mat-form-field class="AñadirTarea">
+    <mat-label>Añadir Tarea</mat-label><input matInput  #itemTittle>
+  </mat-form-field>
+    <button mat-raised-button (click)="addTask(itemTittle)">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+  <br>
+  <div class="btn-group-lg text-lg-left"> 
+    <mat-form-field class="ordenarTarea">
+      <mat-label>Ordenar por:</mat-label>
+      <mat-select>
+        <mat-option (click)="sortTaskNombre()" value="Alfabético">Alfabéticamente</mat-option>
+        <mat-option [class.iconActive]="!orden && !arriba" (click)="ordenPorPrioridad()" value="Estado">Estado</mat-option>
+        <mat-option [class.iconActive]="!orden && !arriba" (click)="sortTaskFecha()" value="Fecha">Fecha</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <br>
+  <div>
+      <mat-list class="list-group-item" *ngFor="let item of toDoListArray">
+        <div *ngIf = "item.isChecked == 0">
+          <span class="hover-cursor" [class.text-warning]="item.isChecked" (click)="alterCheck(item.$key,item.isChecked,item)">
+            <i class="fa fa-lg" [ngClass]="item.isChecked?'fa-sliders':'fa-square-o'"></i>
+          </span>
+          {{item.tittle}}  
+          <mat-form-field class = "modificarTarea">
+            <mat-label>Modificar Tarea</mat-label><input matInput  (keyup.enter)="editItem(item.$key,item,itemTittle)" #itemTittle>
+          </mat-form-field>
+          <span>Pendiente</span>
+          <button mat-fab color="warn"  (click)="delete(item.$key)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+        
+        <div *ngIf = "item.isChecked == 1">
+          <span class="hover-cursor" [class.text-warning]="item.isChecked" (click)="alterCheck(item.$key,item.isChecked,item)">
+            <i class="fa fa-lg" [ngClass]="item.isChecked?'fa-sliders':'fa-square-o'"></i>
+          </span>
+          {{item.tittle}}
+          <span style="display: flex; justify-content: center"> En Proceso</span>
+          <button mat-mini-fab color="warn"  (click)="delete(item.$key)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+        <div *ngIf = "item.isChecked == 2">
+          <span class="hover-cursor" [class.text-warning]="item.isChecked" (click)="alterCheck(item.$key,item.isChecked,item)">
+            <i class="fa fa-lg" [ngClass]="item.isChecked?'fa-sliders':'fa-square-o'"></i>
+          </span>
+          {{item.tittle}}
+        </div>
+      </mat-list>
+  </div>
+  <br>
+  
+  <br>
+  <div class="btn-lg text-lg-center">
+    <button type="button" class="btn btn-outline-danger" (click)="deleteAll()">Borrar todas las tareas</button>
+  </div>
+  <br>
+  <div class="text-lg-left" style="margin-left: 4%;">
+    <h2>Historial</h2>
+  </div>
+  <br>
+  <div class="btn-group-lg text-lg-left">
+    <mat-form-field class="black">
+      <mat-label>Ordenar por:</mat-label>
+      <mat-select>
+        <mat-option (click)="sortTaskNombreDone()" value="Alfabético">Alfabético</mat-option>
+        <mat-option [class.iconActive]="!orden && !arriba" (click)="sortTaskFechaDone()" value="Fecha">Fecha</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <br>
+  <div style="margin:5px 0px">
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let item of toDoListArrayDone">
+          {{item.tittle}}
+          <button mat-mini-fab  class="borrarDone"color="warn"  (click)="deleteDone(item.$key)">
+            <mat-icon>delete</mat-icon>
+          </button>
+      </li>
+    </ul>
+  </div>
+  <br>
+  <div class="btn-lg text-lg-center">
+    <button type="button" class="btn btn-outline-danger" (click)="deleteAllDone()">Borrar historial</button>
+  </div>

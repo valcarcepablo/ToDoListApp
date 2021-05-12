@@ -1,0 +1,57 @@
+.ordenarTarea{
+    font-size: 16px;
+    text-align: left;
+}
+
+
+.hover-cursor{
+    cursor: pointer;
+}
+*{
+    margin-left: 2%;
+    font-size:large;
+}
+.mat-label{
+    justify-content: center;
+    align-content: center;
+    width: max-content;
+}
+
+.example-form {
+    min-width: 150px;
+    max-width: 350px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+  h1 {
+    text-shadow: #555 2px 2px 3px;
+    color :rgba(201, 10, 10, 0.596);
+    font-size:60px;
+    
+  }
+  .mat-raised-button{
+    margin-top: 1%;
+    margin-left: 2%;
+    background: #4285F4;
+    color: rgb(255, 255, 255);
+    font-size: 9px;
+    height:8%;
+    width: auto;
+  }
+
+  .mat-fab  {
+    float: right;
+  }
+  .mat-mini-fab  {
+    float: right;
+    bottom: 35px;
+  }
+
+  .borrarDone{
+    float: right;
+    bottom: 6px;
+  }
+  
